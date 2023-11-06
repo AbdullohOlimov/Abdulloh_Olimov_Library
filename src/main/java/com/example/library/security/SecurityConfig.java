@@ -39,10 +39,16 @@ public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+                .csrf().disable()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .authorizeRequests().anyRequest().permitAll();
+                .authorizeRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers("/librarian/token", "/student/rent-book", "/student/check/{id}", "/books/allBooks" ).permitAll() // Allow access to the login endpoint without authentication
+                                .anyRequest().authenticated()
+                );
         return http.build();
     }
+
 }
 

@@ -18,7 +18,7 @@ public class LibrarianController {
         this.tokenService = tokenService;
     }
 
-    @PostMapping
+    @PostMapping("/token")
     public ResponseEntity<ResultDto> getToken(@RequestBody LibrarianReqDto dto){
         return tokenService.jwtToken(dto.getUsername(), dto.getPassword());
     }
