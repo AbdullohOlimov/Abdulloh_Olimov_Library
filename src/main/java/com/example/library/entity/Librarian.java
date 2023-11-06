@@ -1,9 +1,5 @@
 package com.example.library.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +8,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,12 +27,12 @@ public class Librarian implements UserDetails {
     private Integer id;
     private String username;
     private String password;
-    private String role = "ADMIN";
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority("ROLE_" + role));
+        roles.add(new SimpleGrantedAuthority(role));
         return roles;
     }
 
