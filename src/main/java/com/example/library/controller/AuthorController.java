@@ -8,6 +8,7 @@ import com.example.library.service.BookService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class AuthorController {
 
     @PostMapping("/add")
     @ApiOperation(value = "Add an author", notes = "Adds a new author with the provided information")
+    @PreAuthorize("hasRole('ADMIN')")
     ResponseEntity<ResultDto> addAuthors(@RequestBody AuthorDto dto){
        return authorService.addAuthor(dto);
     }
