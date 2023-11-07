@@ -50,7 +50,7 @@ public class SecurityConfig{
                                 .antMatchers("/librarian/token").permitAll()
                                 .antMatchers("/books/allBooks").permitAll()
                                 .antMatchers("/authors/getAll").permitAll()
-                                .antMatchers("student/rent-book").permitAll()
+                                .antMatchers("/student/rent-book").permitAll()
                                 .antMatchers("/student/check/{id}").permitAll()
                                 .antMatchers("/authors/get-books/{id}").permitAll()
                                 .antMatchers("/library/swagger-ui.html").permitAll()

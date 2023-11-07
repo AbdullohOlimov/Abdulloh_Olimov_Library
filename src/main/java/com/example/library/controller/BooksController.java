@@ -25,7 +25,7 @@ public class BooksController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
     @ApiOperation(value = "Add a book", notes = "Adds a new book with the provided information.")
     public ResponseEntity<ResultDto> addBooks(@RequestBody BookReqDto bookReqDto) throws Exception {
         return bookService.addBook(bookReqDto);
@@ -45,14 +45,14 @@ public class BooksController {
     }
 
     @PutMapping("/edit-book")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
     @ApiOperation(value = "Edit a book", notes = "Edits the details of a book (requires admin role).")
     public ResponseEntity<BookResDto> editBook(@RequestBody BookReqDto dto) throws Exception {
         return bookService.editBook(dto);
     }
 
     @GetMapping("/rented-books")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
     @ApiOperation(value = "Get rented books", notes = "Retrieve a list of rented books.")
     public List<RentResponseDto> rentedBooks(){
         return bookService.getRentalInfoForLibrarian();

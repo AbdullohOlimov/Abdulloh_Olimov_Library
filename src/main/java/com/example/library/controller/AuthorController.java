@@ -27,7 +27,7 @@ public class AuthorController {
 
     @PostMapping("/add")
     @ApiOperation(value = "Add an author", notes = "Adds a new author with the provided information")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize(value = "hasAuthority('ADMIN')")
     ResponseEntity<ResultDto> addAuthors(@RequestBody AuthorDto dto){
        return authorService.addAuthor(dto);
     }

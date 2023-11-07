@@ -24,7 +24,7 @@ import java.util.Set;
 
         @Column(name = "genre")
         private String bookGenre;
-        @Column(name = "count")
+        @Column(name = "count", nullable = false)
         private Integer count;
 
         @ManyToMany
