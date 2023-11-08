@@ -14,7 +14,7 @@ import java.util.Set;
 @Repository
 public interface BookRepository extends JpaRepository<Books, Integer> {
     @Query("SELECT b FROM Books b JOIN b.authors a WHERE a.id = :authorId")
-        List<Books> findBooksByAuthorId(@Param("authorId") Integer authorId);
-    }
+    List<Books> findBooksByAuthorId(@Param("authorId") Integer authorId);
+}
 
 

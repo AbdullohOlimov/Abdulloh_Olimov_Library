@@ -16,6 +16,7 @@ import java.util.List;
 public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepository authorRepository;
     private final AuthorMapper mapper;
+
     public AuthorServiceImpl(AuthorRepository authorRepository, AuthorMapper mapper) {
         this.authorRepository = authorRepository;
         this.mapper = mapper;
@@ -33,7 +34,14 @@ public class AuthorServiceImpl implements AuthorService {
         List<Authors> all = authorRepository.findAll();
         for (Authors authors : all) {
             list.add(mapper.toDto(authors));
-        }return ResponseEntity.ok(list);
+        }
+        /*
+          Better way to map.
+          Easy to read
+          Less code written
+         */
+        var _list = all.stream().map(i -> new AuthorDto(i.getId(), i.getAuthorName())).toList();
+        return ResponseEntity.ok(list);
 
     }
 }

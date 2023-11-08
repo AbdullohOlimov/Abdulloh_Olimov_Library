@@ -103,6 +103,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<RentResponseDto> getRentalInfoForLibrarian() {
+        // Try to get this list from SQL query.
         List<Rental> rentals = rentalRepository.findAll();
         List<RentResponseDto> rentalInfoList = new ArrayList<>();
 

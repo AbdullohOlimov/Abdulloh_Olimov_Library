@@ -26,9 +26,14 @@ public class StudentServiceImpl implements StudentService {
         this.rentalRepository = rentalRepository;
     }
 
+    /*
+      I think we have to add some method for students. I mean CRUD for student.
+       Now we are giving book to student.
+       But There is no any student in our DB
+     */
     @Override
     public boolean rentBook(RentRequestDto dto) {
-        Students student = studentRepository.findById(dto.getStudentId()).orElse(null);
+        Students student = studentRepository.findById(dto.getStudentId()).orElse(null);  // If student is not present we have to throw exception.
         Books book = bookRepository.findById(dto.getBookId()).orElse(null);
 
         if (student != null && book != null && book.getCount() > 0 && !student.getStatus()) {
@@ -54,6 +59,7 @@ public class StudentServiceImpl implements StudentService {
 
         return false;
     }
+
     @Override
     public List<RentResponseDto> getRentalInfoForStudent(Integer studentId) {
             Students student = studentRepository.findById(studentId).orElse(null);
